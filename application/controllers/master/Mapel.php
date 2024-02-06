@@ -12,7 +12,7 @@ class Mapel extends CI_Controller {
         $this->pk = mapel_m::$pk;
         $this->table = mapel_m::$table;
     }
-    
+
     public function index()
     {
         $data['master'] = $data['mapel'] = true;
@@ -71,6 +71,13 @@ class Mapel extends CI_Controller {
         $delete == 'success' ? $this->toastr->success('Hapus data berhasil') : $this->toastr->error('Hapus data gagal');
         redirect('master/mapel');
     }
+
+    public function print_data()
+{
+    $data['mapel'] = $this->mapel_m->getData();
+    $this->load->view('cetak/cetak_mapel', $data);
+}
+
 
 }
 

@@ -1,10 +1,11 @@
 <?php
 
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Guru extends CI_Controller {
+class Guru extends CI_Controller
+{
 
-    
+
     public function __construct()
     {
         parent::__construct();
@@ -13,17 +14,17 @@ class Guru extends CI_Controller {
         $this->pk = guru_m::$pk;
         $this->table = guru_m::$table;
     }
-    
+
     public function index()
     {
         $data['master'] = $data['guru'] = true;
         $data['guru'] = $this->guru_m->getData();
         $data['content'] = 'master/guru';
-        $this->load->view('index',$data);
+        $this->load->view('index', $data);
     }
     public function import()
     {
-        $rows = explode("\n",$this->input->post('guru'));
+        $rows = explode("\n", $this->input->post('guru'));
         $success = 0;
         $failed = 0;
         $exist = 0;
@@ -38,41 +39,43 @@ class Guru extends CI_Controller {
             $fill_data['jk'] = trim($exp[4]);
             $fill_data['alamat'] = trim($exp[5]);
             $cek = $this->guru_m->isValExist(trim($exp[0]));
-            if(!$cek){
-                $this->db->insert($this->table,$fill_data)?$success++:$failed++;
-            }else{
+            if (!$cek) {
+                $this->db->insert($this->table, $fill_data) ? $success++ : $failed++;
+            } else {
                 $exist++;
             }
         }
-        $this->toastr->info($success.' Success. '.$failed.' Failed. '.$exist.' Exist. ');
+        $this->toastr->info($success . ' Success. ' . $failed . ' Failed. ' . $exist . ' Exist. ');
         redirect('master/guru');
     }
     /**
-    * Save | Update
-    * @return Object
-    */
-    public function save() {
+     * Save | Update
+     * @return Object
+     */
+    public function save()
+    {
         $id = _toInteger($this->input->post('idguru', true));
         $dataset = $this->dataset();
-        if (_isNaturalNumber( $id )) {
-            $this->vars['status'] = $this->db->update($this->table, $dataset,[$this->pk=>$id]) ? 'success' : 'error';
+        if (_isNaturalNumber($id)) {
+            $this->vars['status'] = $this->db->update($this->table, $dataset, [$this->pk => $id]) ? 'success' : 'error';
             $this->vars['status'] == 'success' ? $this->toastr->success('Perubahan berhasil') : $this->toastr->error('Perubahan gagal');
         } else {
-            $cek = $this->db->get_where($this->table,['nip'=>$dataset['nip']]);
-            if($cek->num_rows()==0){
+            $cek = $this->db->get_where($this->table, ['nip' => $dataset['nip']]);
+            if ($cek->num_rows() == 0) {
                 $this->vars['status'] = $this->db->insert($this->table, $dataset) ? 'success' : 'error';
                 $this->vars['status'] == 'success' ? $this->toastr->success('Tambah baru berhasil') : $this->toastr->error('Tambah baru gagal');
-            }else{
+            } else {
                 $this->toastr->error('NIP telah digunakan');
             }
         }
         redirect('master/guru');
     }
     /**
-    * Dataset
-    * @return Array
-    */
-    private function dataset() {
+     * Dataset
+     * @return Array
+     */
+    private function dataset()
+    {
         return [
             'nip' => $this->input->post('nip', true),
             'nama' => $this->input->post('nama', true),
@@ -83,19 +86,19 @@ class Guru extends CI_Controller {
         ];
     }
     /**
-    * View By Id
-    * @return Array
-    */
+     * View By Id
+     * @return Array
+     */
     public function view()
     {
         $id = $this->input->post('id', true);
-        $data = $this->db->get_where($this->table,[$this->pk=>$id])->row();
+        $data = $this->db->get_where($this->table, [$this->pk => $id])->row();
         echo json_encode($data);
     }
     /**
-    * Aktifkan akun
-    * @return Array
-    */
+     * Aktifkan akun
+     * @return Array
+     */
     public function key($key)
     {
         $data = $this->guru_m->getById($key);
@@ -104,29 +107,34 @@ class Guru extends CI_Controller {
         redirect('master/guru');
     }
     /**
-    * Aktifkan semua akun
-    * @return Array
-    */
+     * Aktifkan semua akun
+     * @return Array
+     */
     public function keyAll()
     {
         $data = $this->guru_m->getData();
-        for ($i=0; $i < count($data); $i++) { 
+        for ($i = 0; $i < count($data); $i++) {
             $this->guru_m->account($data[$i]);
         }
         $this->toastr->success('Semua akun telah diaktifkan');
         redirect('master/guru');
     }
     /**
-    * Delete By Id
-    * @return Array
-    */
+     * Delete By Id
+     * @return Array
+     */
     public function delete($id)
     {
-        $delete = $this->db->delete($this->table,[$this->pk=>$id])?'success':'error';
+        $delete = $this->db->delete($this->table, [$this->pk => $id]) ? 'success' : 'error';
         $delete == 'success' ? $this->toastr->success('Hapus data berhasil') : $this->toastr->error('Hapus data gagal');
         redirect('master/guru');
     }
 
+    public function print_data()
+    {
+        $data['guru'] = $this->guru_m->getData();
+        $this->load->view('cetak/cetak_guru', $data);
+    }
 }
 
 /* End of file Guru.php */
