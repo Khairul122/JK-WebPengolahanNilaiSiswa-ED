@@ -20,13 +20,13 @@ error_reporting(0);
         <img src="<?= base_url('uploads/') . _school_profile()->logo; ?>" alt="Logo Sekolah" style="width:70px;height:70px;float:left;margin-bottom:10px;">
         <h3 style="line-height:5px; text-align: center;"><?= _school_profile()->nama; ?></h3>
         <h3 style="line-height:5px; text-align: center;">Akreditasi <?= _school_profile()->akreditasi; ?></h3>
-       
+
         <hr style="border:0.5px solid; margin-top:-15px; margin-right:0px; width:750px; margin: auto;">
         <br>
         <p style="line-height:5px; text-align: center; margin-top:-10px; ">
             <?= _school_profile()->alamat; ?>
-        <br>
-        <br>
+            <br>
+            <br>
 
         <h4 class="text-center">DATA HASIL BELAJAR SISWA</h4>
         <h4 class="text-center">RAPORT SISWA</h4>
@@ -77,6 +77,17 @@ error_reporting(0);
                 </tr>
             </thead>
             <tbody>
+                <?php
+                // Initialize variables to hold the sum of each column and the number of rows
+                $total_rtp = 0;
+                $total_rnu = 0;
+                $total_pts = 0;
+                $total_uas = 0;
+                $total_nilai_akhir = 0;
+                $count_rows = count($raport_nilai);
+                ?>
+
+                <!-- Iterate through the raport_nilai data -->
                 <?php foreach ($raport_nilai as $row) : ?>
                     <tr>
                         <td><?= $row['mapel_nama']; ?></td>
@@ -88,9 +99,41 @@ error_reporting(0);
                         <td class="text-center"><?= $row['nilai_huruf']; ?></td>
                         <td><?= $row['deskripsi']; ?></td>
                     </tr>
+
+                    <!-- Add each value to the corresponding total variable -->
+                    <?php
+                    $total_rtp += $row['rata_tp'];
+                    $total_rnu += $row['rata_uh'];
+                    $total_pts += $row['nilai_pts'];
+                    $total_uas += $row['nilai_uas'];
+                    $total_nilai_akhir += $row['nilai_akhir'];
+                    ?>
                 <?php endforeach; ?>
             </tbody>
+            <!-- Display the total values and the average values in the footer row -->
+            <tfoot>
+                <tr>
+                    <td><strong>Total</strong></td>
+                    <td class="text-center"><strong><?= $total_rtp; ?></strong></td>
+                    <td class="text-center"><strong><?= $total_rnu; ?></strong></td>
+                    <td class="text-center"><strong><?= $total_pts; ?></strong></td>
+                    <td class="text-center"><strong><?= $total_uas; ?></strong></td>
+                    <td class="text-center"><strong><?= $total_nilai_akhir; ?></strong></td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td><strong>Rata-rata</strong></td>
+                    <td class="text-center"><strong><?= $count_rows > 0 ? round($total_rtp / $count_rows, 2) : 0; ?></strong></td>
+                    <td class="text-center"><strong><?= $count_rows > 0 ? round($total_rnu / $count_rows, 2) : 0; ?></strong></td>
+                    <td class="text-center"><strong><?= $count_rows > 0 ? round($total_pts / $count_rows, 2) : 0; ?></strong></td>
+                    <td class="text-center"><strong><?= $count_rows > 0 ? round($total_uas / $count_rows, 2) : 0; ?></strong></td>
+                    <td class="text-center"><strong><?= $count_rows > 0 ? round($total_nilai_akhir / $count_rows, 2) : 0; ?></strong></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tfoot>
         </table>
+
+
         <p>
             Keterangan :
             <br>
