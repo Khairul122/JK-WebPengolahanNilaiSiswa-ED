@@ -313,7 +313,7 @@
             <div class="pull-right hidden-xs">
                 Page rendered in <strong>{elapsed_time}</strong> seconds.
             </div>
-           
+
         </footer>
     </div>
     <!-- ./wrapper -->

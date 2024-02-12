@@ -75,6 +75,7 @@ class Siswa extends CI_Controller
             'alamat_ortu' => $this->input->post('alamat_ortu', true),
         ];
     }
-    
+}
+
 
 /* End of file Siswa.php */

@@ -3,12 +3,12 @@
     <h1>
         Siswa Aktif
     </h1>
-    <?php if(__session('access')=='super_user'):?>
-    <ol class="breadcrumb">
-        <li><a href="<?=base_url('dashboard');?>"><i class="fa fa-home"></i> Beranda</a></li>
-        <li class="active">Siswa Aktif</li>
-    </ol>
-    <?php endif;?>
+    <?php if (__session('access') == 'super_user') : ?>
+        <ol class="breadcrumb">
+            <li><a href="<?= base_url('dashboard'); ?>"><i class="fa fa-home"></i> Beranda</a></li>
+            <li class="active">Siswa Aktif</li>
+        </ol>
+    <?php endif; ?>
 </section>
 
 <!-- Main content -->
@@ -29,20 +29,20 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
-                    $n=1;
-                    foreach ($students as $row) :?>
-                    <tr>
-                        <td><?=$n++.'.';?></td>
-                        <td><?=$row->kelas_kd;?></td>
-                        <td><?=$row->nis;?></td>
-                        <td><?=$row->nisn;?></td>
-                        <td><?=$row->nama;?></td>
-                        <td><?=$row->tmp_lhr.', '.date('d M Y',strtotime($row->tgl_lhr));?></td>
-                        <td><?=$row->jk=='L'?'Laki-Laki':'Perempuan';?></td>
-                        <td><?=$row->alamat;?></td>
-                    </tr>
-                    <?php endforeach;?>
+                    <?php
+                    $n = 1;
+                    foreach ($students as $row) : ?>
+                        <tr>
+                            <td><?= $n++ . '.'; ?></td>
+                            <td><?= $row->kelas_kd; ?></td>
+                            <td><?= $row->nis; ?></td>
+                            <td><?= $row->nisn; ?></td>
+                            <td><?= $row->nama; ?></td>
+                            <td><?= $row->tmp_lhr . ', ' . date('d M Y', strtotime($row->tgl_lhr)); ?></td>
+                            <td><?= $row->jk == 'L' ? 'Laki-Laki' : 'Perempuan'; ?></td>
+                            <td><?= $row->alamat; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
