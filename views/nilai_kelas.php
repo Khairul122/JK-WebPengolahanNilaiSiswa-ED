@@ -33,8 +33,7 @@ error_reporting(0);
             <br>
             <br>
 
-        <h4 class="text-center">DATA HASIL BELAJAR SISWA</h4>
-        <h4 class="text-center">RAPORT SISWA</h4>
+        <h4 class="text-center">DATA NILAI PERKELAS</h4>
         <br>
         <table style="padding:15px;">
 
