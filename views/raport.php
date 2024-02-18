@@ -10,7 +10,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-        Cetak Raport
+        Cetak Data
     </h1>
     <?php if (__session('access') == 'super_user'): ?>
         <ol class="breadcrumb">
