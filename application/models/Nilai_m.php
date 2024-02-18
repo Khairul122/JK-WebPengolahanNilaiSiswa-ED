@@ -60,6 +60,21 @@ class Nilai_m extends CI_Model {
         $this->db->where(self::$pk, $idnilai);
         $this->db->update(self::$table, $data);
     }
+
+    public function get_siswa_by_filter($idtahun_akademik, $semester, $idkelas) {
+        // Lakukan query sesuai dengan filter yang diberikan
+        $this->db->select('*');
+        $this->db->from('siswa');
+        $this->db->join('nilai', 'siswa.idsiswa = nilai.idsiswa');
+        $this->db->join('tahun_akademik', 'nilai.idtahun_akademik = tahun_akademik.idtahun_akademik');
+        $this->db->join('mapel', 'nilai.idmapel = mapel.idmapel');
+        $this->db->join('kelas', 'siswa.idkelas = kelas.idkelas');
+        $this->db->where('tahun_akademik.idtahun_akademik', $idtahun_akademik);
+        $this->db->where('tahun_akademik.semester', $semester);
+        $this->db->where('kelas.idkelas', $idkelas);
+        $query = $this->db->get();
+        return $query->result();
+    }
 }
 
 /* End of file Nilai_m.php */
