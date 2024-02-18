@@ -117,7 +117,7 @@
                         <!-- <a href="#" class="btn btn-success btn-flat btn-sm" target="_blank" onclick="submit()"><i
                                 class="fa fa-print"></i>
                             Cetak Raport</a> -->
-                        <button type="submit" class="btn btn-success btn-flat btn-sm" formtarget="_blank"><i class="fa fa-print"></i> Cetak Data Kelas</button>
+                        <button type="submit" class="btn btn-success btn-flat btn-sm" formtarget="_blank"><i class="fa fa-print"></i> Cetak Data Siswa</button>
                     </div>
                 </div>
             </div>

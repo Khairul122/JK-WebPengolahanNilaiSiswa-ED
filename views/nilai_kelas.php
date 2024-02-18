@@ -55,6 +55,7 @@ error_reporting(0);
             <th>NIS</th>
             <th>NISN</th>
             <th>NAMA LENGKAP</th>
+            <th>KELAS</th>
             <th>TTL</th>
             <th>JK</th>
             <th>ALAMAT</th>
@@ -62,37 +63,38 @@ error_reporting(0);
     </thead>
     <tbody>
         <?php
-        $n = 1;
-        foreach ($siswa_data as $siswa) : ?>
+$n = 1;
+foreach ($siswa_data as $siswa): ?>
             <tr>
-                <td><?= $n++ . '.'; ?></td>
-                <td><?= $siswa->nis; ?></td>
-                <td><?= $siswa->nisn; ?></td>
-                <td><?= $siswa->nama; ?></td>
-                <td><?= $siswa->tmp_lhr . ', ' . date('d M Y', strtotime($siswa->tgl_lhr)); ?></td>
-                <td><?= $siswa->jk == 'L' ? 'Laki-Laki' : 'Perempuan'; ?></td>
-                <td><?= $siswa->alamat; ?></td>
+                <td><?=$n++ . '.';?></td>
+                <td><?=$siswa->nis;?></td>
+                <td><?=$siswa->nisn;?></td>
+                <td><?=$siswa->nama;?></td>
+                <td><?=$kelas_nama;?></td>
+                <td><?=$siswa->tmp_lhr . ', ' . date('d M Y', strtotime($siswa->tgl_lhr));?></td>
+                <td><?=$siswa->jk == 'L' ? 'Laki-Laki' : 'Perempuan';?></td>
+                <td><?=$siswa->alamat;?></td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;?>
     </tbody>
 </table>
 
 
 <p style="text-align:right;margin-right:125px;">Padang,
-            <?= date('d M Y', strtotime($raport_data['tanggal'])); ?></p>
+            <?=date('d M Y', strtotime($raport_data['tanggal']));?></p>
         <table>
             <tr>
                 <td class="text-center" width="500">
                     Kepala Sekolah
                     <br>
-                    <?= _school_profile()->nama; ?>
+                    <?=_school_profile()->nama;?>
                     <br>
                     <br>
                     <br>
                     <br>
-                    <u><?= _school_profile()->nama_kepsek; ?></u>
+                    <u><?=_school_profile()->nama_kepsek;?></u>
                     <br>
-                    NIP. <?= _school_profile()->nip_kepsek; ?>
+                    NIP. <?=_school_profile()->nip_kepsek;?>
                 </td>
             </tr>
         </table>
