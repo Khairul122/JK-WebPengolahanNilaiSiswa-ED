@@ -78,7 +78,24 @@ error_reporting(0);
 </table>
 
 
-
+<p style="text-align:right;margin-right:125px;">Padang,
+            <?= date('d M Y', strtotime($raport_data['tanggal'])); ?></p>
+        <table>
+            <tr>
+                <td class="text-center" width="500">
+                    Kepala Sekolah
+                    <br>
+                    <?= _school_profile()->nama; ?>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <u><?= _school_profile()->nama_kepsek; ?></u>
+                    <br>
+                    NIP. <?= _school_profile()->nip_kepsek; ?>
+                </td>
+            </tr>
+        </table>
 
 
 
