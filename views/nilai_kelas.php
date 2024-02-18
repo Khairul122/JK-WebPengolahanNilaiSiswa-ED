@@ -33,7 +33,7 @@ error_reporting(0);
             <br>
             <br>
 
-        <h4 class="text-center">DATA NILAI PERKELAS</h4>
+        <h4 class="text-center">DATA SISWA PERKELAS</h4>
         <br>
         <table style="padding:15px;">
 
@@ -45,28 +45,40 @@ error_reporting(0);
 
 </tr>
 
+
+<!-- Tampilkan daftar siswa -->
+<!-- Tampilkan data siswa dalam tabel -->
 <table class="table table-bordered table-striped" style="font-size:12pt;">
     <thead>
         <tr>
-            <th rowspan="2" style="text-align:center;line-height:30px;padding:0px 0px 15px 0px;">SISWA</th>
-            <?php foreach ($mapel_data as $mapel): ?>
-                <th colspan="1" style="text-align:center;padding:0px;"><?php echo $mapel->mapel_nama; ?></th>
-            <?php endforeach;?>
+            <th width="5">NO</th>
+            <th>NIS</th>
+            <th>NISN</th>
+            <th>NAMA LENGKAP</th>
+            <th>TTL</th>
+            <th>JK</th>
+            <th>ALAMAT</th>
         </tr>
-
     </thead>
     <tbody>
-        <?php foreach ($siswa_data as $siswa): ?>
+        <?php
+        $n = 1;
+        foreach ($siswa_data as $siswa) : ?>
             <tr>
-                <td><?php echo $siswa->nama; ?></td>
-                <?php foreach ($mapel_data as $mapel): ?>
-                    <td><?php echo $mapel->nilai_akhir; ?></td>
-                <?php endforeach;?>
-
+                <td><?= $n++ . '.'; ?></td>
+                <td><?= $siswa->nis; ?></td>
+                <td><?= $siswa->nisn; ?></td>
+                <td><?= $siswa->nama; ?></td>
+                <td><?= $siswa->tmp_lhr . ', ' . date('d M Y', strtotime($siswa->tgl_lhr)); ?></td>
+                <td><?= $siswa->jk == 'L' ? 'Laki-Laki' : 'Perempuan'; ?></td>
+                <td><?= $siswa->alamat; ?></td>
             </tr>
-        <?php endforeach;?>
+        <?php endforeach; ?>
     </tbody>
 </table>
+
+
+
 
 
 

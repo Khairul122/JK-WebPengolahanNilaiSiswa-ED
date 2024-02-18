@@ -13,7 +13,7 @@ class Siswa_m extends CI_Model {
         parent::__construct();
         //Do your magic here
     }
-    
+
     public function getData()
     {
         return $this->db->get(self::$table)->result();
@@ -41,6 +41,23 @@ class Siswa_m extends CI_Model {
             ];
             $this->db->insert('users', $data);
         }
+    }
+
+    public function getSiswaByKelas($idtahun_akademik, $semester, $idkelas)
+    {
+        // Menggunakan Query Builder untuk membangun query
+        $this->db->select('siswa.*');
+        $this->db->from('siswa');
+        $this->db->join('kelas', 'siswa.idkelas = kelas.idkelas');
+        $this->db->join('tahun_akademik', 'kelas.idtahun_akademik = tahun_akademik.idtahun_akademik');
+        $this->db->where('tahun_akademik.idtahun_akademik', $idtahun_akademik);
+        $this->db->where('kelas.semester', $semester);
+        $this->db->where('siswa.idkelas', $idkelas);
+
+        $query = $this->db->get();
+
+        // Mengembalikan hasil query dalam bentuk array
+        return $query->result_array();
     }
 
 }

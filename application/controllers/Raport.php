@@ -67,7 +67,7 @@ class Raport extends CI_Controller
             ->get('kelas')->row()->kelas_nama;
 
         // Mendapatkan data siswa berdasarkan tahun akademik, semester, dan kelas
-        $siswa_data = $this->db->select('siswa.nama')
+        $siswa_data = $this->db->select('siswa.nama, siswa.nis, siswa.nisn, siswa.tmp_lhr, siswa.tgl_lhr, siswa.jk, siswa.alamat')
             ->join('rombel', 'rombel.idwali_kelas = wali_kelas.idwali_kelas', 'left')
             ->join('siswa', 'siswa.idsiswa = rombel.idsiswa', 'left')
             ->where(['wali_kelas.idtahun_akademik' => $idtahun_akademik, 'wali_kelas.semester' => $semester, 'wali_kelas.idkelas' => $idkelas])
@@ -86,6 +86,38 @@ class Raport extends CI_Controller
         $data['mapel_data'] = $mapel_data;
         $this->load->view('nilai_kelas', $data);
     }
+
+    // public function cetak_kelas()
+    // {
+    //     $idtahun_akademik = $this->input->post('idtahun_akademik', true);
+    //     $semester = $this->input->post('semester', true);
+    //     $idkelas = $this->input->post('idkelas', true);
+
+    //     // Mendapatkan nama kelas dari database
+    //     $kelas_nama = $this->db->select('kelas_nama')
+    //         ->where('idkelas', $idkelas)
+    //         ->get('kelas')->row()->kelas_nama;
+
+    //     // Mendapatkan data siswa berdasarkan tahun akademik, semester, dan kelas
+    //     $siswa_data = $this->db->select('siswa.nama')
+    //         ->join('rombel', 'rombel.idwali_kelas = wali_kelas.idwali_kelas', 'left')
+    //         ->join('siswa', 'siswa.idsiswa = rombel.idsiswa', 'left')
+    //         ->where(['wali_kelas.idtahun_akademik' => $idtahun_akademik, 'wali_kelas.semester' => $semester, 'wali_kelas.idkelas' => $idkelas])
+    //         ->get('wali_kelas')->result();
+
+    //     // Mendapatkan nama-nama mata pelajaran
+    //     $mapel_data = $this->db->select('mapel.mapel_nama, nilai.nilai_akhir')
+    //         ->join('tahun_akademik', 'tahun_akademik.idtahun_akademik = nilai.idtahun_akademik', 'left')
+    //         ->join('mapel', 'mapel.idmapel = nilai.idmapel', 'left')
+    //         ->where(['nilai.idtahun_akademik' => $idtahun_akademik, 'nilai.semester' => $semester, 'nilai.idkelas' => $idkelas])
+    //         ->group_by('mapel.mapel_nama')
+    //         ->get('nilai')->result();
+
+    //     $data['siswa_data'] = $siswa_data;
+    //     $data['kelas_nama'] = $kelas_nama;
+    //     $data['mapel_data'] = $mapel_data;
+    //     $this->load->view('nilai_kelas', $data);
+    // }
 
 }
 
