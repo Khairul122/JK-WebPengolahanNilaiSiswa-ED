@@ -54,12 +54,7 @@ error_reporting(0);
                 <th colspan="1" style="text-align:center;padding:0px;"><?php echo $mapel->mapel_nama; ?></th>
             <?php endforeach;?>
         </tr>
-        <tr>
-            <?php foreach ($mapel_data as $mapel): ?>
-                <th colspan="1" style="text-align:center;padding:0px;">Nilai</th>
-            <?php endforeach;?>
-            <th style="text-align:center;padding:0px;">&nbsp;</th>
-        </tr>
+
     </thead>
     <tbody>
         <?php foreach ($siswa_data as $siswa): ?>
