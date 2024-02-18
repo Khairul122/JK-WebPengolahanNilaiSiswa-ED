@@ -15,7 +15,7 @@
     <?php if (__session('access') == 'super_user'): ?>
         <ol class="breadcrumb">
             <li><a href="<?=base_url('dashboard');?>"><i class="fa fa-home"></i> Beranda</a></li>
-            <li class="active">Cetak Raport</li>
+            <li class="active">Cetak Data</li>
         </ol>
     <?php endif;?>
 </section>
@@ -117,7 +117,7 @@
                         <!-- <a href="#" class="btn btn-success btn-flat btn-sm" target="_blank" onclick="submit()"><i
                                 class="fa fa-print"></i>
                             Cetak Raport</a> -->
-                        <button type="submit" class="btn btn-success btn-flat btn-sm" formtarget="_blank"><i class="fa fa-print"></i> Cetak Raport</button>
+                        <button type="submit" class="btn btn-success btn-flat btn-sm" formtarget="_blank"><i class="fa fa-print"></i> Cetak Data Kelas</button>
                     </div>
                 </div>
             </div>
