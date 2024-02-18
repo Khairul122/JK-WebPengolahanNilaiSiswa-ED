@@ -233,7 +233,7 @@
                     <?php if (__session('access') == 'super_user'): ?>
                         <li <?=isset($report) ? 'class="active"' : '';?>>
                             <a href="<?=base_url('raport');?>">
-                                <i class="fa fa-print"></i> <span>Cetak Data</span>
+                                <i class="fa fa-print"></i> <span>Cetak Rapor</span>
                             </a>
                         </li>
                     <?php endif;?>
