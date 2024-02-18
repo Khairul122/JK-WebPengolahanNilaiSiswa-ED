@@ -39,9 +39,9 @@ error_reporting(0);
 
 
         <tr>
-        <td width="150"><b>Kelas</b></td>
+        <!-- <td width="150"><b>Kelas</b></td>
 <td width="20">:</td>
-<td width="350"><?=$kelas_nama;?></td>
+<td width="350"><?=$kelas_nama;?></td> -->
 
 </tr>
 
